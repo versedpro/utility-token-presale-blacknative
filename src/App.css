@@ -1,0 +1,467 @@
+:root {
+  --background: #f7f7f7;
+  --primary-color: #4e4e4e;
+  --accent-color: #57b8ff;
+  --accent-color-2: #ffa620;
+  --accent-color-3: #2174ab;
+  --text-color: #162142;
+  --screen-height: 100vh;
+}
+
+@font-face {
+  font-family: Futura;
+  src: url('./Futura.otf');
+}
+
+body {
+  font-family: Futura;
+  font-style: normal;
+  background: var(--background);
+  color: var(--text-color);
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0 !important;
+}
+
+.main {
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  padding-inline: 6.5rem;
+  padding-block: 50px;
+  height: calc(var(--screen-height) - 100px);
+  position: relative;
+}
+
+.buttonlogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.buttonswitch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 0;
+}
+
+.buttonswitch h2 {
+  font-size: 24px;
+  margin-bottom: 5px !important;
+  color: var(--text-color);
+}
+
+.containerr {
+  background: #eaebef;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #2174ab4d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  width: 100%;
+}
+.part {
+  width: calc(50% - 1px);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.lottie {
+  width: 50%;
+  height: auto;
+}
+.line {
+  height: 100%;
+  width: 2px;
+  background-color: var(--accent-color-3);
+  opacity: 0.5;
+}
+
+@media (min-width: 1000px) {
+  .containerr {
+    min-width: 400px;
+  }
+}
+
+.minted {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.452);
+  font-family: Futura;
+}
+
+.progress {
+  text-align: left;
+  width: 70%;
+}
+.progress h3 {
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+@media screen and (max-width: 750px) {
+  body {
+    overflow: unset;
+    overflow-x: hidden;
+  }
+
+  main {
+    height: unset;
+    overflow: unset;
+  }
+
+  section {
+    flex-direction: column;
+  }
+
+  div.containerr {
+    width: unset;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  div.containerr {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    width: calc(100vw - 4rem);
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .containerr .send-transaction-containerr {
+    flex-direction: column;
+    margin: 4px auto;
+  }
+}
+
+.minting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--primary-color);
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 30px;
+}
+.loadingcolor {
+  color: var(--primary-color);
+}
+.mintbutton {
+  position: relative;
+  padding: 12px 48px;
+  border-radius: 14px;
+  min-width: 300px;
+  border: 2px solid var(--accent-color-3);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 100%;
+  background: var(--accent-color-3);
+  color: var(--background);
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mintbutton:hover {
+  background: transparent;
+  color: var(--accent-color-3);
+  background: #35a0e73a;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.mintbutton:disabled:hover {
+  position: relative;
+  padding: 12px 48px;
+  border-radius: 14px;
+  border: 2px solid var(--accent-color-3);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 100%;
+  background: var(--accent-color-3);
+  color: var(--background);
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  cursor: not-allowed;
+  white-space: nowrap;
+}
+.mintbutton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.mintbutton:hover::before {
+  -webkit-animation: sh02 0.5s 0s linear;
+  -moz-animation: sh02 0.5s 0s linear;
+  animation: sh02 0.5s 0s linear;
+}
+
+.mintbutton::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #fff;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
+.MuiLinearProgress-bar {
+  border-radius: 30px !important;
+  background: var(--accent-color-2) !important;
+}
+
+.cost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.cost h2 {
+  font-family: Futura;
+  font-size: 24px;
+  color: var(--primary-color);
+  margin: 0px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.quantitymint {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  border: 2px solid var(--primary-color);
+  padding: 10px;
+  align-items: center;
+  border-radius: 7px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.quantitymint h2 {
+  font-family: Futura;
+  font-size: 20px;
+  color: var(--text-color);
+  font-weight: 400;
+  margin: 0px;
+}
+
+input {
+  background: transparent;
+  border: 1px solid #4e4e4e6c;
+  font-family: Futura;
+  font-size: 20px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.mintbuttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.quantitymint {
+  margin-bottom: 10px;
+}
+
+.phase {
+  font-family: Futura;
+  font-size: 50px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-color);
+  margin: 0;
+}
+.whitelist {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text-color);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.tokensowned {
+  color: var(--accent-color-3);
+  font-size: 24px;
+  margin: 0;
+}
+.wallet {
+  color: var(--text-color);
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  margin-top: 10px;
+}
+.wallet-address {
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.8;
+}
+.presale {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.presale h2 {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+.presale h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent-color-3);
+  margin-bottom: 5px;
+  margin: 0;
+}
+.stages {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 40px;
+  width: 90%;
+  margin-top: 60px;
+  text-align: left;
+}
+.stage h4 {
+  color: var(--accent-color-2);
+  margin: 0;
+  font-size: 20px;
+}
+.stage p {
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.8;
+}
+.logo-before-connect {
+  max-width: 90%;
+  width: 300px;
+  margin-inline: auto;
+}
+
+@media (max-width: 800px) {
+  .main-content {
+    width: 100%;
+  }
+  .stages {
+    grid-template-columns: 1fr;
+  }
+
+  .phases {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cost h3 {
+    font-size: 30px;
+    text-align: left;
+  }
+
+  .quantitymint h2 {
+    font-size: 16px;
+  }
+
+  .main {
+    overflow-y: visible;
+  }
+
+  .main-content {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  * {
+    overflow-y: visible;
+  }
+
+  .lottie {
+    width: 100%;
+  }
+
+  .progress {
+    width: 100%;
+  }
+
+  .containerr {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    flex-direction: column;
+    margin-top: 100px;
+  }
+  .presale {
+    margin-top: 0;
+  }
+  .main-content {
+    padding: 0;
+    height: 100%;
+  }
+  .phase {
+    font-size: 32px;
+  }
+  .part {
+    width: 100%;
+  }
+  .minting {
+    padding: 10px;
+  }
+}
