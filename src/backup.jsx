@@ -20,19 +20,13 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
-  useAccountCenter,
   useConnectWallet,
   useNotifications,
-  useSetChain,
-  useWallets,
-  useSetLocale
+  useWallets
 } from '@web3-onboard/react'
 import './App.css'
 import addressesWL from './whitelist.json'
 import addressesVIP from './viplist.json'
-import { borderLeftColor } from '@mui/system'
-
-let provider
 
 const NFTcontractAddress = '0xA7041473133F1EA149b875C60E7eA22668187703'
 
@@ -79,11 +73,11 @@ function MintPage() {
   const [checkedWL, setCheckedWL] = useState(false)
   const [validWL, setValidWL] = useState(false)
   const [quantity, setQuantity] = useState(1)
-  const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
-  const [notifyPosition, setNotifyPosition] = useState('bottomRight')
-  const [locale, setLocale] = useState('en')
-  const [accountCenterSize, setAccountCenterSize] = useState('normal')
-  const [accountCenterExpanded, setAccountCenterExpanded] = useState(false)
+  // const [accountCenterPosition, setAccountCenterPosition] = useState('topRight')
+  // const [notifyPosition, setNotifyPosition] = useState('bottomRight')
+  // const [locale, setLocale] = useState('en')
+  // const [accountCenterSize, setAccountCenterSize] = useState('normal')
+  // const [accountCenterExpanded, setAccountCenterExpanded] = useState(false)
 
   const [progress, setProgress] = React.useState(10)
 

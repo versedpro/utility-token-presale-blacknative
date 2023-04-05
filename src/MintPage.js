@@ -10,17 +10,13 @@ import Lottie from 'react-lottie-player'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
-  useAccountCenter,
   useConnectWallet,
   useNotifications,
   useSetChain,
-  useWallets,
-  useSetLocale
+  useWallets
 } from '@web3-onboard/react'
 import './App.css'
 import lottie from './coin.json'
-
-let provider
 
 const PresaleContractAddress = '0xAe5C2a047B5C2A3cac37b06eA748C6C792adFB7D'
 const USDCAddress = '0xEEa85fdf0b05D1E0107A61b4b4DB1f345854B952'
@@ -47,13 +43,12 @@ LinearProgressWithLabel.propTypes = {
 }
 
 function MintPage() {
-  const [{ wallet }, connect, disconnect, updateBalances, setWalletModules] =
-    useConnectWallet()
-  const [notifications, customNotification, updateNotify] = useNotifications()
+  const [{ wallet }, connect, disconnect] = useConnectWallet()
+  const [notifications] = useNotifications()
   const connectedWallets = useWallets()
   const [web3Onboard, setWeb3Onboard] = useState(null)
-  const [{ chains, connectedChain, settingChain }, setChain] = useSetChain()
-  const [error, setError] = useState('')
+  const [{ connectedChain }, setChain] = useSetChain()
+  // const [error, setError] = useState('')
   const [data, setData] = useState({})
   const [quantity, setQuantity] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -79,9 +74,10 @@ function MintPage() {
   }, [connectedWallets, wallet])
 
   useEffect(() => {
-    if (connectedWallets.length != 0) {
+    if (connectedWallets.length !== 0) {
       fetchData()
     }
+    // eslint-disable-next-line
   }, [connectedWallets])
 
   useEffect(() => {
@@ -125,7 +121,7 @@ function MintPage() {
       )
       const ethLatest = await contract.getETHLatestPrice()
       let whitelisted
-      if (phaseNumber == 0) {
+      if (phaseNumber === 0) {
         whitelisted = await contract.whitelist(
           connectedWallets[0]['accounts'][0]['address']
         )
@@ -150,7 +146,9 @@ function MintPage() {
       setData(object)
       setLoading(false)
     } catch (err) {
-      setError(err.message)
+      // setError(err.message)
+      console.error(err.message)
+      handleError(err)
     }
   }
 
@@ -190,7 +188,7 @@ function MintPage() {
       fetchData()
     } catch (err) {
       console.log(err)
-      setError(err)
+      // setError(err)
       handleError(err)
     }
   }
@@ -243,7 +241,7 @@ function MintPage() {
       await transaction.wait()
       fetchData()
     } catch (err) {
-      setError(err)
+      // setError(err)
       handleError(err)
     }
   }
@@ -319,7 +317,7 @@ function MintPage() {
                   </button>
                 </>
               )}
-              {wallet && connectedChain.id == '0x5' && loading && (
+              {wallet && connectedChain.id === '0x5' && loading && (
                 <h2 className="loadingcolor">Loading...</h2>
               )}
               {wallet && connectedChain.id !== '0x5' && (
@@ -329,7 +327,7 @@ function MintPage() {
                 </div>
               )}
 
-              {!loading && wallet && connectedChain.id == '0x5' && (
+              {!loading && wallet && connectedChain.id === '0x5' && (
                 <>
                   {data.claimingEnabled === 'true' ? (
                     <h1 className="phase">
@@ -383,7 +381,7 @@ function MintPage() {
                         />
                       </div>
 
-                      {data.phaseNumber == 0 && (
+                      {data.phaseNumber === 0 && (
                         <div className="mintbuttons">
                           <button
                             className="mintbutton"
@@ -453,7 +451,7 @@ function MintPage() {
                           </button>
                         </div>
                       )}
-                      {data.phaseNumber != 0 && (
+                      {data.phaseNumber !== 0 && (
                         <div className="mintbuttons">
                           <button
                             className="mintbutton"
@@ -529,7 +527,7 @@ function MintPage() {
             <div className="line"></div>
             <div className="lottie part">
               <Lottie className="lottie" loop animationData={lottie} play />
-              {!loading && wallet && connectedChain.id == '0x5' && (
+              {!loading && wallet && connectedChain.id === '0x5' && (
                 <>
                   <div className="progress">
                     <h3 className="minted">

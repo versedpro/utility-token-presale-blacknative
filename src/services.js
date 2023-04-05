@@ -6,9 +6,9 @@ import injectedModule from '@web3-onboard/injected-wallets'
 import walletConnectModule from '@web3-onboard/walletconnect'
 
 // Replace with your DApp's Infura ID
-const INFURA_ID = `${process.env.REACT_APP_INFURA_KEY}`
+// const INFURA_ID = `${process.env.REACT_APP_INFURA_KEY}`
 
-const dappId = `${process.env.REACT_APP_DAPP_ID}`
+// const dappId = `${process.env.REACT_APP_DAPP_ID}`
 
 const injected = injectedModule()
 const walletConnect = walletConnectModule()
