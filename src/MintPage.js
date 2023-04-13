@@ -18,7 +18,7 @@ import {
 import './App.css'
 import lottie from './coin.json'
 
-const PresaleContractAddress = '0xAe5C2a047B5C2A3cac37b06eA748C6C792adFB7D'
+const PresaleContractAddress = '0x400AEf5F7Ec1d91a3eB339Cde02D68333f47B1a8'
 const USDCAddress = '0xEEa85fdf0b05D1E0107A61b4b4DB1f345854B952'
 const WETHAddress = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
 function LinearProgressWithLabel(props) {
