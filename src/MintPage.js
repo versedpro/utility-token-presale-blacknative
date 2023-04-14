@@ -126,7 +126,7 @@ function MintPage() {
           connectedWallets[0]['accounts'][0]['address']
         )
       }
-      setQuantity(currentPhase.minPurchase.toString())
+      setQuantity(currentPhase.minPurchase.toString() / 10 ** 18)
       console.log(whitelisted)
       const claimingEnabled = await contract.claimingEnabled()
       const tokenBalanceUser = await contract.balances(
@@ -193,9 +193,14 @@ function MintPage() {
     }
   }
   async function buy(isEth) {
-    if (quantity < parseInt(data.currentPhase.minPurchase.toString(), 10)) {
+    if (
+      quantity <
+      parseInt(data.currentPhase.minPurchase.toString() / 10 ** 18, 10)
+    ) {
       toast.error(
-        `Minimum you can buy in this phase is: ${data.currentPhase.minPurchase.toString()}`,
+        `Minimum you can buy in this phase is: ${
+          data.currentPhase.minPurchase.toString() / 10 ** 18
+        }`,
         {
           position: 'bottom-center',
           autoClose: 5000,
@@ -208,9 +213,14 @@ function MintPage() {
         }
       )
     }
-    if (quantity > parseInt(data.currentPhase.maxPurchase.toString(), 10)) {
+    if (
+      quantity >
+      parseInt(data.currentPhase.maxPurchase.toString() / 10 ** 18, 10)
+    ) {
       toast.error(
-        `Maximum allowed per wallet on this phase is: ${data.currentPhase.maxPurchase.toString()}`,
+        `Maximum allowed per wallet on this phase is: ${
+          data.currentPhase.maxPurchase.toString() / 10 ** 18
+        }`,
         {
           position: 'bottom-center',
           autoClose: 5000,
@@ -237,7 +247,11 @@ function MintPage() {
       let overrides = {
         from: connectedWallets[0]['accounts'][0]['address']
       }
-      const transaction = await contract.buyTokens(quantity, isEth, overrides)
+      const transaction = await contract.buyTokens(
+        quantity * 10 ** 18,
+        isEth,
+        overrides
+      )
       await transaction.wait()
       fetchData()
     } catch (err) {
@@ -373,8 +387,12 @@ function MintPage() {
                         <input
                           type="number"
                           id="quantity"
-                          min={data.currentPhase.minPurchase.toString()}
-                          max={data.currentPhase.maxPurchase.toString()}
+                          min={
+                            data.currentPhase.minPurchase.toString() / 10 ** 18
+                          }
+                          max={
+                            data.currentPhase.maxPurchase.toString() / 10 ** 18
+                          }
                           step="1"
                           value={quantity}
                           onChange={e => setQuantity(e.target.value)}
@@ -413,7 +431,6 @@ function MintPage() {
                           <button
                             className="mintbutton"
                             disabled={
-                              data.claimingEnabled === 'false' ||
                               data.whitelisted === 'false' ||
                               data.usdcAllowance <
                                 (
@@ -429,7 +446,6 @@ function MintPage() {
                           <button
                             className="mintbutton"
                             disabled={
-                              data.claimingEnabled === 'false' ||
                               data.whitelisted === 'false' ||
                               data.wethAllowance <
                                 ((
@@ -483,13 +499,12 @@ function MintPage() {
                           <button
                             className="mintbutton"
                             disabled={
-                              data.claimingEnabled === 'false' ||
                               data.usdcAllowance <
-                                (
-                                  data.currentPhase.tokenPrice.toString() /
-                                  10 ** 18
-                                ).toFixed(2) *
-                                  quantity
+                              (
+                                data.currentPhase.tokenPrice.toString() /
+                                10 ** 18
+                              ).toFixed(2) *
+                                quantity
                             }
                             onClick={() => buy(false)}
                           >
@@ -498,14 +513,13 @@ function MintPage() {
                           <button
                             className="mintbutton"
                             disabled={
-                              data.claimingEnabled === 'false' ||
                               data.wethAllowance <
-                                ((
-                                  data.currentPhase.tokenPrice.toString() /
-                                  10 ** 18
-                                ).toFixed(2) *
-                                  quantity) /
-                                  data.ethLatest
+                              ((
+                                data.currentPhase.tokenPrice.toString() /
+                                10 ** 18
+                              ).toFixed(2) *
+                                quantity) /
+                                data.ethLatest
                             }
                             onClick={() => buy(true)}
                           >
@@ -537,7 +551,7 @@ function MintPage() {
                       ).toLocaleString('en-US')}{' '}
                       /{' '}
                       {Number(
-                        data.currentPhase.tokensAvailable.toString()
+                        data.currentPhase.tokensAvailable.toString() / 10 ** 18
                       ).toLocaleString('en-US')}{' '}
                       (
                       {Math.round(
