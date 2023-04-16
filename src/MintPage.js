@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ethers, BigNumber } from 'ethers'
+import { ethers } from 'ethers'
 import contractabi from './contracts/artifacts/contractabi.json'
 import tokenabi from './contracts/artifacts/tokenabi.json'
 import PropTypes from 'prop-types'
