@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ethers } from 'ethers'
+import { ethers, BigNumber } from 'ethers'
 import contractabi from './contracts/artifacts/contractabi.json'
 import tokenabi from './contracts/artifacts/tokenabi.json'
 import PropTypes from 'prop-types'
@@ -248,7 +248,7 @@ function MintPage() {
         from: connectedWallets[0]['accounts'][0]['address']
       }
       const transaction = await contract.buyTokens(
-        quantity * 10 ** 18,
+        String(quantity * 10 ** 18),
         isEth,
         overrides
       )
@@ -276,13 +276,25 @@ function MintPage() {
         progress: undefined,
         theme: 'dark'
       })
-    }
-    if (
+    } else if (
       err.message?.includes('Insufficient') ||
-      err.data?.message?.includes('Insufficient')
+      err.data?.message?.includes('Insufficient') ||
+      err.message?.includes('ERC20: transfer amount exceeds balance') ||
+      err.data?.message?.includes('ERC20: transfer amount exceeds balance')
     ) {
       console.log('Insufficient funds')
       toast.error('Insufficient funds', {
+        position: 'bottom-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark'
+      })
+    } else {
+      toast.error('Error occurs on your transaction', {
         position: 'bottom-center',
         autoClose: 5000,
         hideProgressBar: false,
