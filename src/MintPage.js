@@ -559,7 +559,7 @@ function MintPage() {
                     <h3 className="minted">
                       Tokens Sold: &nbsp;
                       {Number(
-                        data.currentPhase.tokensSold.toString()
+                        data.currentPhase.tokensSold.toString() / 10 ** 18
                       ).toLocaleString('en-US')}{' '}
                       /{' '}
                       {Number(
