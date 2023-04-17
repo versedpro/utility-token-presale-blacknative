@@ -375,7 +375,8 @@ function MintPage() {
                   <div className="minting">
                     <>
                       <h1 className="tokensowned">
-                        You own {data.tokenBalanceUser} tokens.
+                        You own {data.tokenBalanceUser.toString() / 10 ** 18}{' '}
+                        tokens.
                       </h1>
                       <h2 className="wallet">Connected wallet</h2>
                       <h3 className="wallet-address">
