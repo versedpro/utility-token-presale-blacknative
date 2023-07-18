@@ -308,7 +308,7 @@ function MintPage() {
   }
 
   const switchNetworkETH = async () => {
-    await setChain({ chainId: '0x5' })
+    await setChain({ chainId: '0xaa36a7' })
   }
   useEffect(() => {
     function setScreenHeight() {
@@ -337,23 +337,28 @@ function MintPage() {
             <div className="part">
               {!wallet && (
                 <>
-                  <img src="logo.png" className="logo-before-connect" alt="" />
+                  <img
+                    src="logo.svg"
+                    className="logo-before-connect"
+                    alt=""
+                    height={300}
+                  />
                   <button className="mintbutton" onClick={handleConnect}>
                     Connect Wallet
                   </button>
                 </>
               )}
-              {wallet && connectedChain.id === '0x5' && loading && (
+              {wallet && connectedChain.id === '0xaa36a7' && loading && (
                 <h2 className="loadingcolor">Loading...</h2>
               )}
-              {wallet && connectedChain.id !== '0x5' && (
+              {wallet && connectedChain.id !== '0xaa36a7' && (
                 <div className="buttonswitch" onClick={switchNetworkETH}>
-                  <h2>Switch to Ethereum Mainnet</h2>
+                  <h2>Switch to Target Chain</h2>
                   <img src="/assets/eth.svg" className="buttonlogo" alt="" />
                 </div>
               )}
 
-              {!loading && wallet && connectedChain.id === '0x5' && (
+              {!loading && wallet && connectedChain.id === '0xaa36a7' && (
                 <>
                   {data.claimingEnabled === 'true' ? (
                     <h1 className="phase">
@@ -554,7 +559,7 @@ function MintPage() {
             <div className="line"></div>
             <div className="lottie part">
               <Lottie className="lottie" loop animationData={lottie} play />
-              {!loading && wallet && connectedChain.id === '0x5' && (
+              {!loading && wallet && connectedChain.id === '0xaa36a7' && (
                 <>
                   <div className="progress">
                     <h3 className="minted">
@@ -603,48 +608,48 @@ function MintPage() {
         <div className="main-content">
           <div className="containerr presale">
             <h2>Presale Phases</h2>
-            <h3>Total Supply: 10,000,000 tokens</h3>
-            <h3>Total Presale: 5,000,000 tokens</h3>
-            <h3>Listing Price: $0.55</h3>
+            <h3>Total Supply: 50,000,000 tokens</h3>
+            <h3>Total Presale: 20,000,000 tokens</h3>
+            <h3>Listing Price: $0.055</h3>
             <div className="stages">
               <div className="stage">
-                <h4>Phase 0 (reserved for nft holders):</h4>
+                <h4>Phase 0:</h4>
                 <p>
-                  Minimum buy: 300 tokens <br />
-                  Maximum buy: 2,500 tokens <br />
-                  1,500,000 tokens, price $0.40
+                  Minimum buy: 3,000 tokens <br />
+                  Maximum buy: 25,000 tokens <br />
+                  6,000,000 tokens, price $0.040
                 </p>
               </div>
               <div className="stage">
                 <h4>Phase 1:</h4>
                 <p>
-                  Minimum buy: 300 tokens <br />
+                  Minimum buy: 3,000 tokens <br />
                   Maximum buy: 5,000 tokens <br />
-                  875,000 tokens, price $0.44
+                  3,500,000 tokens, price $0.044
                 </p>
               </div>
               <div className="stage">
                 <h4>Phase 2:</h4>
                 <p>
-                  Minimum buy: 200 tokens <br />
-                  Maximum buy: 7,500 tokens <br />
-                  875,000 tokens, price $0.46
+                  Minimum buy: 2,000 tokens <br />
+                  Maximum buy: 75,000 tokens <br />
+                  3,500,000 tokens, price $0.046
                 </p>
               </div>
               <div className="stage">
                 <h4>Phase 3:</h4>
                 <p>
-                  Minimum buy: 200 tokens <br />
-                  Maximum buy: 7,500 tokens <br />
-                  875,000 tokens, price $0.48
+                  Minimum buy: 2,000 tokens <br />
+                  Maximum buy: 75,000 tokens <br />
+                  3,500,000 tokens, price $0.048
                 </p>
               </div>
               <div className="stage">
                 <h4>Phase 4:</h4>
                 <p>
-                  Minimum buy: 100 tokens <br />
-                  Maximum buy: 10,000 tokens <br />
-                  875,000 tokens, price $0.50
+                  Minimum buy: 1,000 tokens <br />
+                  Maximum buy: 100,000 tokens <br />
+                  3,500,000 tokens, price $0.050
                 </p>
               </div>
             </div>
