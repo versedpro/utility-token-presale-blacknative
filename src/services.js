@@ -1,5 +1,5 @@
-import blocknativeLogo from './icons/logo192.png'
-import blocknativeIcon from './icons/logo192.png'
+import blocknativeLogo from './icons/logo.png'
+import blocknativeIcon from './icons/logo.png'
 
 import { init } from '@web3-onboard/react'
 import injectedModule from '@web3-onboard/injected-wallets'
