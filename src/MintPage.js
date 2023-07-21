@@ -18,9 +18,9 @@ import {
 import './App.css'
 import lottie from './coin.json'
 
-const PresaleContractAddress = '0x400AEf5F7Ec1d91a3eB339Cde02D68333f47B1a8'
+const PresaleContractAddress = '0x4f9591d4A215e3Fe024C9E273872fDFf3edd5002'
 const USDCAddress = '0xEEa85fdf0b05D1E0107A61b4b4DB1f345854B952'
-const WETHAddress = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'
+const WETHAddress = '0xD0dF82dE051244f04BfF3A8bB1f62E1cD39eED92'
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
@@ -127,7 +127,7 @@ function MintPage() {
         )
       }
       setQuantity(currentPhase.minPurchase.toString() / 10 ** 18)
-      console.log(whitelisted)
+      // console.log(whitelisted)
       const claimingEnabled = await contract.claimingEnabled()
       const tokenBalanceUser = await contract.balances(
         connectedWallets[0]['accounts'][0]['address']
@@ -436,10 +436,7 @@ function MintPage() {
                           >
                             APPROVE{' '}
                             {(
-                              ((
-                                data.currentPhase.tokenPrice.toString() /
-                                10 ** 18
-                              ).toFixed(2) *
+                              (data.currentPhase.tokenPrice.toString() *
                                 quantity) /
                                 data.ethLatest +
                               0.001
@@ -466,10 +463,9 @@ function MintPage() {
                             disabled={
                               data.whitelisted === 'false' ||
                               data.wethAllowance <
-                                ((
-                                  data.currentPhase.tokenPrice.toString() /
-                                  10 ** 18
-                                ).toFixed(2) *
+                                (data.currentPhase.tokenPrice
+                                  .toString()
+                                  .toFixed(2) *
                                   quantity) /
                                   data.ethLatest
                             }
@@ -504,10 +500,7 @@ function MintPage() {
                           >
                             APPROVE{' '}
                             {(
-                              ((
-                                data.currentPhase.tokenPrice.toString() /
-                                10 ** 18
-                              ).toFixed(2) *
+                              (data.currentPhase.tokenPrice.toString() *
                                 quantity) /
                                 data.ethLatest +
                               0.001
@@ -624,7 +617,7 @@ function MintPage() {
                 <h4>Phase 1:</h4>
                 <p>
                   Minimum buy: 3,000 tokens <br />
-                  Maximum buy: 5,000 tokens <br />
+                  Maximum buy: 50,000 tokens <br />
                   3,500,000 tokens, price $0.044
                 </p>
               </div>
