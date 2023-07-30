@@ -18,15 +18,23 @@ import {
 import './App.css'
 import lottie from './coin.json'
 
-const PresaleContractAddress = '0x4f9591d4A215e3Fe024C9E273872fDFf3edd5002'
-const USDCAddress = '0xEEa85fdf0b05D1E0107A61b4b4DB1f345854B952'
-const WETHAddress = '0xD0dF82dE051244f04BfF3A8bB1f62E1cD39eED92'
+// const PresaleContractAddress = '0x4f9591d4A215e3Fe024C9E273872fDFf3edd5002'
+// const USDCAddress = '0xEEa85fdf0b05D1E0107A61b4b4DB1f345854B952'
+// const WETHAddress = '0xD0dF82dE051244f04BfF3A8bB1f62E1cD39eED92'
+
+const PresaleContractAddress = '0x9E7c1911BB00bc63ACC2BeeB6e1eF82d59144547'
+const WETHAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' // WETH address on ETH
+const USDCAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' // USDC address on ETH
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
       <Box sx={{ width: '100%', mr: 1 }}>
         <LinearProgress
-          sx={{ height: '15px', borderRadius: '30px', background: '#0073ff3b' }}
+          sx={{
+            height: '15px',
+            borderRadius: '30px',
+            background: '#0073ff3b'
+          }}
           variant="determinate"
           {...props}
         />
@@ -308,7 +316,7 @@ function MintPage() {
   }
 
   const switchNetworkETH = async () => {
-    await setChain({ chainId: '0xaa36a7' })
+    await setChain({ chainId: '0x1' })
   }
   useEffect(() => {
     function setScreenHeight() {
@@ -348,17 +356,17 @@ function MintPage() {
                   </button>
                 </>
               )}
-              {wallet && connectedChain.id === '0xaa36a7' && loading && (
+              {wallet && connectedChain.id === '0x1' && loading && (
                 <h2 className="loadingcolor">Loading...</h2>
               )}
-              {wallet && connectedChain.id !== '0xaa36a7' && (
+              {wallet && connectedChain.id !== '0x1' && (
                 <div className="buttonswitch" onClick={switchNetworkETH}>
-                  <h2>Switch to Target Chain</h2>
+                  <h2>Switch to Ethereum Mainnet</h2>
                   <img src="/assets/eth.svg" className="buttonlogo" alt="" />
                 </div>
               )}
 
-              {!loading && wallet && connectedChain.id === '0xaa36a7' && (
+              {!loading && wallet && connectedChain.id === '0x1' && (
                 <>
                   {data.claimingEnabled === 'true' ? (
                     <h1 className="phase">
@@ -552,7 +560,7 @@ function MintPage() {
             <div className="line"></div>
             <div className="lottie part">
               <Lottie className="lottie" loop animationData={lottie} play />
-              {!loading && wallet && connectedChain.id === '0xaa36a7' && (
+              {!loading && wallet && connectedChain.id === '0x1' && (
                 <>
                   <div className="progress">
                     <h3 className="minted">
@@ -602,15 +610,15 @@ function MintPage() {
           <div className="containerr presale">
             <h2>Presale Phases</h2>
             <h3>Total Supply: 50,000,000 tokens</h3>
-            <h3>Total Presale: 20,000,000 tokens</h3>
-            <h3>Listing Price: $0.055</h3>
+            <h3>Total Presale: 22,500,000 tokens</h3>
+            <h3>Listing Price: $0.02</h3>
             <div className="stages">
               <div className="stage">
                 <h4>Phase 0:</h4>
                 <p>
                   Minimum buy: 3,000 tokens <br />
                   Maximum buy: 25,000 tokens <br />
-                  6,000,000 tokens, price $0.040
+                  7,500,000 tokens, price $0.010
                 </p>
               </div>
               <div className="stage">
@@ -618,7 +626,7 @@ function MintPage() {
                 <p>
                   Minimum buy: 3,000 tokens <br />
                   Maximum buy: 50,000 tokens <br />
-                  3,500,000 tokens, price $0.044
+                  6,000,000 tokens, price $0.012
                 </p>
               </div>
               <div className="stage">
@@ -626,7 +634,7 @@ function MintPage() {
                 <p>
                   Minimum buy: 2,000 tokens <br />
                   Maximum buy: 75,000 tokens <br />
-                  3,500,000 tokens, price $0.046
+                  4,500,000 tokens, price $0.014
                 </p>
               </div>
               <div className="stage">
@@ -634,7 +642,7 @@ function MintPage() {
                 <p>
                   Minimum buy: 2,000 tokens <br />
                   Maximum buy: 75,000 tokens <br />
-                  3,500,000 tokens, price $0.048
+                  3,000,000 tokens, price $0.016
                 </p>
               </div>
               <div className="stage">
@@ -642,7 +650,7 @@ function MintPage() {
                 <p>
                   Minimum buy: 1,000 tokens <br />
                   Maximum buy: 100,000 tokens <br />
-                  3,500,000 tokens, price $0.050
+                  1,500,000 tokens, price $0.018
                 </p>
               </div>
             </div>
