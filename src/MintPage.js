@@ -22,7 +22,7 @@ import lottie from './coin.json'
 // const USDCAddress = '0xEEa85fdf0b05D1E0107A61b4b4DB1f345854B952'
 // const WETHAddress = '0xD0dF82dE051244f04BfF3A8bB1f62E1cD39eED92'
 
-const PresaleContractAddress = '0x9E7c1911BB00bc63ACC2BeeB6e1eF82d59144547'
+const PresaleContractAddress = '0x9Ddfb2C0C7d334D8F7B1227169482f13E26f2191'
 const WETHAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' // WETH address on ETH
 const USDCAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' // USDC address on ETH
 function LinearProgressWithLabel(props) {
