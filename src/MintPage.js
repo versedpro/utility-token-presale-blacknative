@@ -25,6 +25,8 @@ import lottie from './coin.json'
 const PresaleContractAddress = '0x7E18Dc4B75BF6BBEBD05A4BD248a8Dc49D0DAC90'
 const WETHAddress = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' // WETH address on ETH
 const USDCAddress = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' // USDC address on ETH
+const TokenAddress = '0x9Ddfb2C0C7d334D8F7B1227169482f13E26f2191'
+
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
@@ -116,7 +118,10 @@ function MintPage() {
     )
     const usdc = new ethers.Contract(USDCAddress, tokenabi.abi, provider)
     const weth = new ethers.Contract(WETHAddress, tokenabi.abi, provider)
+    const token = new ethers.Contract(TokenAddress, tokenabi.abi, provider)
+
     try {
+      const remainingBalance = await token.balanceOf(PresaleContractAddress)
       const currentPhase = await contract.getCurrentPhase()
       const phaseNumber = await contract.currentPhase()
       const usdcAllowance = await usdc.allowance(
@@ -148,7 +153,8 @@ function MintPage() {
         whitelisted: String(whitelisted),
         usdcAllowance: String(usdcAllowance),
         wethAllowance: String(wethAllowance),
-        ethLatest: String(ethLatest)
+        ethLatest: String(ethLatest),
+        remainingBalance: String(remainingBalance)
       }
       console.log(object)
       setData(object)
@@ -368,7 +374,7 @@ function MintPage() {
 
               {!loading && wallet && connectedChain.id === '0x1' && (
                 <>
-                  {data.claimingEnabled === 'true' ? (
+                  {data.remainingBalance > '0' ? (
                     <h1 className="phase">
                       Phase {data.phaseNumber} has started.
                     </h1>
